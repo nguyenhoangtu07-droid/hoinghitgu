@@ -52,13 +52,34 @@
             <!-- Cột Trái: Thông tin sự kiện -->
             <div class="md:col-span-2 bg-white rounded-xl shadow-2xl overflow-hidden relative border-l-8 border-yellow-400">
                 <div class="p-6 md:p-8">
-                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mb-4">THÔNG TIN SỰ KIỆN</span>
                     
-                    <h2 class="text-2xl md:text-3xl font-black text-gray-800 mb-2 uppercase leading-tight" id="eventTitle">
-                        TRÒ CHUYỆN CÙNG TS. LÊ VĂN HƯỞNG
-                    </h2>
-                    <p class="text-gray-600 font-medium mb-6 uppercase tracking-wide">Trường Đại học Tiền Giang</p>
+                    <!-- KHU VỰC TIÊU ĐỀ VÀ HÌNH ẢNH DIỄN GIẢ -->
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6 text-center sm:text-left">
+                        <!-- Hình ảnh diễn giả (Đã cập nhật file images.jfif) -->
+                        <div class="shrink-0 relative">
+                            <img src="images.jfif" 
+                                 onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Lê+Văn+Hưởng&background=0D8ABC&color=fff&size=256';" 
+                                 alt="TS. Lê Văn Hưởng" 
+                                 class="w-28 h-28 md:w-36 md:h-36 object-cover rounded-full border-4 border-white outline outline-2 outline-blue-200 shadow-xl bg-white">
+                            <!-- Icon micro nhỏ trang trí -->
+                            <div class="absolute bottom-1 right-1 bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center border-2 border-white shadow-sm">
+                                <i class="fa-solid fa-microphone-lines text-xs"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Nội dung tiêu đề -->
+                        <div class="flex-1 mt-2 sm:mt-0">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full mb-3">THÔNG TIN SỰ KIỆN</span>
+                            <h2 class="text-2xl md:text-3xl font-black text-gray-800 mb-2 uppercase leading-tight" id="eventTitle">
+                                Trò chuyện cùng TS. Lê Văn Hưởng
+                            </h2>
+                            <p class="text-gray-600 font-medium uppercase tracking-wide">Trường Đại học Tiền Giang</p>
+                        </div>
+                    </div>
                     
+                    <hr class="border-gray-100 mb-6">
+
+                    <!-- Khu vực Thời gian & Địa điểm -->
                     <div class="space-y-4 mb-6">
                         <div class="flex items-start">
                             <i class="fa-regular fa-clock text-red-600 mt-1 mr-3 w-5 text-center"></i>
@@ -85,7 +106,7 @@
 
                     <!-- Nút Xác nhận tham dự -->
                     <button onclick="openRsvpModal()" class="w-full mt-6 bg-red-600 hover:bg-red-700 text-white font-bold text-lg py-3 px-4 rounded-xl shadow-lg transition transform hover:-translate-y-1 flex justify-center items-center">
-                        <i class="fa-solid fa-clipboard-check mr-2"></i> XÁC NHẬN THAM DỰ HỘI NGHỊ
+                        <i class="fa-solid fa-clipboard-check mr-2"></i> XÁC NHẬN THAM DỰ SỰ KIỆN
                     </button>
                 </div>
             </div>
@@ -109,7 +130,7 @@
                     </div>
                     <div class="ml-4">
                         <h3 class="text-lg font-bold text-gray-800">Tài Liệu Hội Nghị</h3>
-                        <p class="text-xs text-gray-500 mt-1 line-clamp-2">Kho lưu trữ slide trình bày, Nghị quyết 57-NQ/TW.</p>
+                        <p class="text-xs text-gray-500 mt-1 line-clamp-2">Kho lưu trữ slide trình bày, tài liệu sự kiện.</p>
                     </div>
                 </a>
 
@@ -185,12 +206,11 @@
                 </button>
             </div>
 
-            <!-- CHÚ Ý: Đã thêm name="name", name="unit"... vào các input -->
             <form id="rsvpForm" onsubmit="submitRsvpForm(event)" class="p-6">
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Họ và Tên *</label>
-                        <input type="text" name="name" id="rsvpName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="VD: Lê Văn Hưởng">
+                        <input type="text" name="name" id="rsvpName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="VD: Nguyễn Văn A">
                     </div>
                     
                     <div>
@@ -227,7 +247,7 @@
         // CẤU HÌNH SỰ KIỆN 
         // ==========================================
         const eventConfig = {
-            title: "TRÒ CHUYỆN CÙNG TS. LÊ VĂN HƯỞNG",
+            title: "Trò chuyện cùng TS. Lê Văn Hưởng",
             time: "08 giờ 30 phút, ngày 26 tháng 9 năm 2026 (thứ Bảy).",
             location: "Phòng Khánh tiết, Trường ĐH Tiền Giang",
             guests: [
@@ -308,16 +328,15 @@
             const form = document.getElementById('rsvpForm');
             const formData = new FormData(form);
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyN_Ba9knW0jjrtpddVCCsnrtTxCCJ2oc5QWO7OJYmA6duDoQOa_xXdUE7y70gzj8cq/exec'; 
+            // Web App URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwucrvLmBknl_vM5CjsoA2UBBRTipIFCRkDlYynyQDbtUGPU4p4y_CYrVBlB7s6odnGsg/exec'; 
 
-            // Sử dụng mode: 'no-cors' để vượt qua bảo mật trình duyệt
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: formData
             })
             .then(() => {
-                // Với no-cors, trình duyệt không đọc được phản hồi nhưng request đã đi thành công
                 alert('Cảm ơn! Xác nhận của bạn đã được lưu vào hệ thống thành công.');
                 form.reset();
                 closeRsvpModal();
