@@ -49,7 +49,6 @@
         </div>
         
         <div class="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm">
-            <!-- Đã đổi thẻ <a> thành <button> và thêm sự kiện onclick="openProgramModal()" -->
             <button onclick="openProgramModal()" class="flex items-center text-gray-600 hover:text-blue-800 bg-gray-100 px-3 py-2 rounded-full transition">
                 <i class="fa-regular fa-calendar-alt mr-2"></i> <span class="hidden md:inline">Chương trình hội nghị</span>
             </button>
@@ -286,13 +285,15 @@
                 { id: "Gku0_gDI0jE", title: "Dự án Thanh Âm đạt giải Ba tại Cuộc thi Đổi mới sáng tạo thành phố", duration: "03:20" },
                 { id: "KCCzdceBY0o", title: "Trường Đại học Tiền Giang đẩy mạnh hợp tác quốc tế", duration: "02:58" }
             ],
+            
+            // CẬP NHẬT DANH SÁCH KHÁCH MỜI
             guests: [
-                { name: "TS. Lê Văn Hưởng", role: "Nguyên Phó Bí thư Tỉnh ủy, Nguyên Chủ tịch UBND tỉnh", type: "VIP" },
-                { name: "PGS.TS. Nguyễn Văn A", role: "Hiệu trưởng Trường Đại học Tiền Giang", type: "Chủ trì" },
-                { name: "TS. Trần Thị B", role: "Trưởng khoa CNTT", type: "Đại biểu" },
-                { name: "ThS. Lê Hoàng C", role: "Giám đốc TT Thông tin - Thư viện", type: "Đại biểu" },
-                { name: "Ông Phạm Văn D", role: "Sở Giáo dục và Đào tạo", type: "Khách mời" },
-                { name: "Bà Nguyễn Thị E", role: "Phòng Hành chính Tổng hợp", type: "Ban tổ chức" }
+                { name: "PGS.TS. Lê Minh Tùng", role: "Quyền Hiệu trưởng Trường Đại học Tiền Giang", type: "Chủ trì" },
+                { name: "TS. Lê Văn Hưởng", role: "Nguyên Chủ tịch UBND tỉnh Tiền Giang", type: "Khách mời" },
+                { name: "Ths. Đinh Quốc Cường", role: "Trưởng Phòng Tổ chức - Hành chính", type: "Ban tổ chức" },
+                { name: "ThS. Nguyễn Thị Kim Xuyến", role: "Giám đốc TT. Thông tin - Thư viện", type: "Đại biểu" },
+                { name: "Ths. Trần Huy Long", role: "Phó Giám đốc TT. Thông tin - Thư viện", type: "Đại biểu" },
+                { name: "Ths. Trần Thị Tiên", role: "Trưởng Phòng Kế hoạch - Tài chính", type: "Đại biểu" }
             ]
         };
 
@@ -372,10 +373,13 @@
             container.innerHTML = '';
             eventConfig.guests.forEach((guest, index) => {
                 let badgeColor = 'bg-gray-100 text-gray-700';
-                if(guest.type === 'VIP') badgeColor = 'bg-red-100 text-red-700 font-bold';
+                
+                // Điều chỉnh màu sắc cho các loại khách mời
+                if(guest.type === 'VIP' || guest.type === 'Khách mời') badgeColor = 'bg-red-100 text-red-700 font-bold';
                 else if(guest.type === 'Chủ trì') badgeColor = 'bg-yellow-100 text-yellow-700 font-bold';
                 else if(guest.type === 'Đại biểu') badgeColor = 'bg-blue-100 text-blue-700';
                 else if(guest.type === 'Ban tổ chức') badgeColor = 'bg-green-100 text-green-700';
+                
                 container.insertAdjacentHTML('beforeend', `<tr class="hover:bg-blue-50 border-b border-gray-100"><td class="py-3 px-4 text-center text-gray-500 text-sm">${index + 1}</td><td class="py-3 px-4 font-bold text-gray-800 text-sm">${guest.name}</td><td class="py-3 px-4 text-gray-600 text-xs">${guest.role}</td><td class="py-3 px-4 text-center"><span class="text-[10px] px-2 py-1 rounded-full ${badgeColor}">${guest.type}</span></td></tr>`);
             });
         }
