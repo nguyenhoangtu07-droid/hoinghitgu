@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chương trình gặp gỡ trao đổi giữa viên chức Trường ĐHTG với TS. Lê Văn Hưởng</title>
+    <title>Chương trình gặp gỡ trao đổi giữa viên chức Trường ĐHTG với TS. Lê Văn Hưởng Nguyên</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -286,12 +286,13 @@
                 { id: "KCCzdceBY0o", title: "Trường Đại học Tiền Giang đẩy mạnh hợp tác quốc tế", duration: "02:58" }
             ],
             
-            // DANH SÁCH 82 KHÁCH MỜI
+            // DANH SÁCH KHÁCH MỜI ĐÃ ĐƯỢC BỔ SUNG TS LÊ VĂN HƯỞNG
             guests: [
                 { name: "Nguyễn Hoàng Vũ", role: "Bí thư Đảng ủy", type: "Chủ trì" },
                 { name: "Lê Minh Tùng", role: "Q.Hiệu trưởng", type: "Chủ trì" },
                 { name: "Lê Thị Kim Loan", role: "Phó Hiệu trưởng", type: "Chủ trì" },
                 { name: "Cao Nguyên Thi", role: "Phó Hiệu trưởng", type: "Chủ trì" },
+                { name: "TS. Lê Văn Hưởng", role: "Nguyên chủ tịch UBND tỉnh Tiền Giang", type: "Khách mời" },
                 { name: "Đinh Quốc Cường", role: "Trưởng Phòng TCHC", type: "Ban tổ chức" },
                 { name: "Trần Thị Tiên", role: "Trưởng Phòng KHTC", type: "Ban tổ chức" },
                 { name: "Dương Văn Hiếu", role: "Trưởng Phòng QLĐT", type: "Đại biểu" },
@@ -449,6 +450,7 @@
             container.innerHTML = '';
             eventConfig.guests.forEach((guest, index) => {
                 let badgeColor = 'bg-gray-100 text-gray-700';
+                
                 if(guest.type === 'VIP' || guest.type === 'Khách mời') badgeColor = 'bg-red-100 text-red-700 font-bold';
                 else if(guest.type === 'Chủ trì') badgeColor = 'bg-yellow-100 text-yellow-700 font-bold';
                 else if(guest.type === 'Đại biểu') badgeColor = 'bg-blue-100 text-blue-700';
@@ -458,16 +460,19 @@
             });
         }
 
+        // Logic Modal Khách Mời
         const modal = document.getElementById('guestModal'), modalContent = document.getElementById('modalContent');
         function openModal() { modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95'); }, 10); }
         function closeModal() { modal.classList.add('opacity-0'); modalContent.classList.add('scale-95'); setTimeout(() => { modal.classList.add('hidden'); }, 300); }
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
+        // Logic Modal RSVP
         const rsvpModal = document.getElementById('rsvpModal'), rsvpModalContent = document.getElementById('rsvpModalContent');
         function openRsvpModal() { rsvpModal.classList.remove('hidden'); setTimeout(() => { rsvpModal.classList.remove('opacity-0'); rsvpModalContent.classList.remove('scale-95'); }, 10); }
         function closeRsvpModal() { rsvpModal.classList.add('opacity-0'); rsvpModalContent.classList.add('scale-95'); setTimeout(() => { rsvpModal.classList.add('hidden'); }, 300); }
         rsvpModal.addEventListener('click', (e) => { if (e.target === rsvpModal) closeRsvpModal(); });
 
+        // Logic Modal CHƯƠNG TRÌNH HỘI NGHỊ 
         const programModal = document.getElementById('programModal'), programModalContent = document.getElementById('programModalContent');
         function openProgramModal() { programModal.classList.remove('hidden'); setTimeout(() => { programModal.classList.remove('opacity-0'); programModalContent.classList.remove('scale-95'); }, 10); }
         function closeProgramModal() { programModal.classList.add('opacity-0'); programModalContent.classList.add('scale-95'); setTimeout(() => { programModal.classList.add('hidden'); }, 300); }
